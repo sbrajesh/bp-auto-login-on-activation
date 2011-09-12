@@ -5,11 +5,11 @@
  * Plugin URI: http://buddydev.com/plugins/bp-autologin-on-activation/
  * Author: Brajesh Singh
  * Author URI: http://buddydev.com/members/sbrajesh
- * Version: 1.0
+ * Version: 1.0.1
  * Network: true
  * Description: This plugin automatically logs in the user and redirects them to their profile when they activate their account
  * License: GPL
- *  * Last Modified: May 19, 2010
+ * Last Modified: September 11, 2011
  */
 add_action("bp_core_activated_user","bp_autologin_on_activation",40,3);
 function bp_autologin_on_activation($user_id,$key,$user) {
@@ -18,7 +18,7 @@ function bp_autologin_on_activation($user_id,$key,$user) {
 
                 //simulate Bp activation
 		/* Check for an uploaded avatar and move that to the correct user folder, just do what bp does */
-		if ( bp_core_is_multisite() )
+		if ( is_multisite() )
 			$hashed_key = wp_hash( $key );
 		else
 			$hashed_key = wp_hash( $user_id );
