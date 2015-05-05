@@ -1,22 +1,26 @@
 <?php
 
 /*
- * Plugin Name: BP Auto Login on Activation
+ * Plugin Name: (BuddyDev) BP Auto Login on Activation
  * Plugin URI: http://buddydev.com/plugins/bp-autologin-on-activation/
- * Author: Brajesh Singh
+ * Author: Brajesh Singh(BuddyDev.com)
  * Author URI: http://buddydev.com/members/sbrajesh
- * Version: 1.0.1
+ * Version: 1.0.2
  * Network: true
  * Description: This plugin automatically logs in the user and redirects them to their profile when they activate their account
  * License: GPL
  * Last Modified: September 11, 2011
  */
-add_action("bp_core_activated_user","bp_autologin_on_activation",40,3);
-function bp_autologin_on_activation($user_id,$key,$user) {
-	global $bp, $wpdb;
-		
 
-                //simulate Bp activation
+add_action( 'bp_core_activated_user', 'bp_autologin_on_activation', 40, 3 );
+
+function bp_autologin_on_activation( $user_id, $key, $user ) {
+	
+
+	$bp = buddypress();
+	
+
+      //simulate Bp activation
 		/* Check for an uploaded avatar and move that to the correct user folder, just do what bp does */
 		if ( is_multisite() )
 			$hashed_key = wp_hash( $key );
@@ -31,9 +35,10 @@ function bp_autologin_on_activation($user_id,$key,$user) {
 
 		$bp->activation_complete = true;
 	//now login and redirect
-              wp_set_auth_cookie($user_id,true,false);
-             bp_core_redirect(apply_filters ("bpdev_autoactivate_redirect_url",bp_core_get_user_domain($user_id ),$user_id));      
+              
+		wp_set_auth_cookie( $user_id, true, false );
+        
+		bp_core_redirect( apply_filters ( 'bpdev_autoactivate_redirect_url', bp_core_get_user_domain( $user_id ), $user_id ) );      
                 
 	
 }
-?>
