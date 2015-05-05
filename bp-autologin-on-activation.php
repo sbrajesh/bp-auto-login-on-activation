@@ -9,7 +9,7 @@
  * Network: true
  * Description: This plugin automatically logs in the user and redirects them to their profile when they activate their account
  * License: GPL
- * Last Modified: September 11, 2011
+ * Last Modified: May 05, 2015
  */
 
 add_action( 'bp_core_activated_user', 'bp_autologin_on_activation', 40, 3 );
